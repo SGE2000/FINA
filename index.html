@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Expense Tracker</title>
+  <meta name="description" content="Track your income and expenses, set budgets and visualize your personal finances." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header" role="banner">
+    <h1>Expense Tracker</h1>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="icon-sun" aria-hidden="true"></span>
+      <span class="visually-hidden">Toggle theme</span>
+    </button>
+  </header>
+
+  <main class="app-main" role="main">
+    <section id="add-transaction" aria-labelledby="add-title">
+      <h2 id="add-title">Add Transaction</h2>
+      <form id="transaction-form">
+        <div class="field-group">
+          <label for="type">Type</label>
+          <select id="type" name="type" required>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="amount">Amount (HNL)</label>
+          <input type="number" id="amount" name="amount" min="0.01" step="0.01" required />
+        </div>
+
+        <div class="field-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" maxlength="100" required />
+        </div>
+
+        <div class="field-group">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="home">Home</option>
+            <option value="health">Health</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <button type="submit" class="btn-primary">Add</button>
+      </form>
+    </section>
+
+    <section id="filters" aria-labelledby="filter-title">
+      <h2 id="filter-title">Filters</h2>
+      <form id="filter-form">
+        <div class="field-group">
+          <label for="filter-period">Period</label>
+          <select id="filter-period" name="period">
+            <option value="all">All</option>
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="filter-category">Category</label>
+          <select id="filter-category" name="category">
+            <option value="all">All</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="home">Home</option>
+            <option value="health">Health</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-secondary">Apply</button>
+      </form>
+    </section>
+
+    <section id="summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">Summary</h2>
+      <div class="summary-cards" id="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section id="charts" aria-labelledby="charts-title">
+      <h2 id="charts-title">Charts</h2>
+      <canvas id="pie-chart" aria-label="Spending distribution chart"></canvas>
+      <canvas id="bar-chart" aria-label="Income vs Expenses chart"></canvas>
+    </section>
+
+    <section id="transactions" aria-labelledby="transactions-title">
+      <h2 id="transactions-title">Transactions</h2>
+      <ul id="transaction-list" class="transaction-list"></ul>
+    </section>
+
+    <section id="data-tools" aria-labelledby="data-tools-title">
+      <h2 id="data-tools-title">Data Tools</h2>
+      <button id="export-btn" class="btn-secondary">Export Data</button>
+      <input type="file" id="import-input" accept=".json" hidden />
+      <button id="import-btn" class="btn-secondary">Import Data</button>
+      <button id="clear-btn" class="btn-danger">Clear All</button>
+    </section>
+  </main>
+
+  <footer class="app-footer" role="contentinfo">
+    <p>&copy; <span id="year"></span> Expense Tracker</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
